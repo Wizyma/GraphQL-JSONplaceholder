@@ -6,6 +6,21 @@ const {
 } = require('graphql');
 const {  adressType } = require('../adress');
 
+const companyType = new GraphQLObjectType({
+  name: 'Company',
+  fields: () => ({
+    name: {
+      type: GraphQLNonNull(GraphQLString),
+    },
+    catchPhrase: {
+      type: GraphQLNonNull(GraphQLString),
+    },
+    bs: {
+      type: GraphQLNonNull(GraphQLString),
+    },
+  })
+})
+
 const userType = new GraphQLObjectType({
   name: 'User',
   fields: () => ({
@@ -23,6 +38,15 @@ const userType = new GraphQLObjectType({
     },
     address: {
       type: GraphQLNonNull(adressType),
+    },
+    phone: {
+      type: GraphQLNonNull(GraphQLString),
+    },
+    website: {
+      type: GraphQLNonNull(GraphQLString),
+    },
+    company: {
+      type: GraphQLNonNull(companyType),
     },
   })
 })

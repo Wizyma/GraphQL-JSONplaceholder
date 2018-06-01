@@ -8,8 +8,12 @@ const {
 const geoType = new GraphQLObjectType({
   name: 'Geo',
   fields: () => ({
-    lat: GraphQLNonNull(GraphQLFloat),
-    lng: GraphQLNonNull(GraphQLFloat),
+    lat: {
+      type: GraphQLNonNull(GraphQLFloat),
+    },
+    lng: {
+      type: GraphQLNonNull(GraphQLFloat),
+    },
   })
 })
 

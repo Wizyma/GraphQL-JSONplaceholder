@@ -4,6 +4,9 @@ const cors = require('cors');
 const dotenv = require('dotenv').config();
 const bodyParser = require('body-parser');
 
+const schema = require('../graphql');
+const data = require('../data.json');
+
 class Server {
   constructor({ port }) {
     this.port = port || 4000
@@ -18,7 +21,8 @@ class Server {
     this.app.use(bodyParser.urlencoded({ extended: true }))
     this.app.use('/api', expressGraphql({
       schema,
-      graphiql: process.env.GRAPHIQL
+      graphiql: process.env.GRAPHIQL,
+      rootValue: data
     }))
   }
 
