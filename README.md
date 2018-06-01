@@ -28,7 +28,7 @@ for now you can queries users and todos
 more to come. 
 
 ## Todo 
-- [ ] comments
+- [x] comments
 - [ ] photos
 - [ ] albums
 - [ ] posts
