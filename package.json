@@ -4,7 +4,7 @@
   "description": "Jsonplaceholder powered by graphQL",
   "main": "index.js",
   "scripts": {
-    "start": "node ./index.js"
+    "start": "micro ./index.js"
   },
   "repository": {
     "type": "git",
@@ -25,9 +25,10 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "dotenv": "^5.0.1",
-    "express": "^4.16.3",
     "express-graphql": "^0.6.12",
-    "graphql": "^0.13.2"
+    "graphql": "^0.13.2",
+    "micro": "^9.3.2",
+    "micro-cors": "^0.1.0"
   },
   "devDependencies": {
     "cors": "^2.8.4"

@@ -1,4 +1,12 @@
-const Server = require('./config')
+const expressGraphql = require('express-graphql');
+const CORS = require('micro-cors')()
+const dotenv = require('dotenv').config();
+const bodyParser = require('body-parser');
+const schema = require('./graphql')
+const data = require('./data.json')
 
-const app = new Server({ port: 3000 })
-app.run()
+module.exports = CORS(expressGraphql({
+  schema,
+  graphiql: process.env.GRAPHIQL,
+  rootValue: data
+}))
