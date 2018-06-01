@@ -8,5 +8,8 @@ const data = require('./data.json')
 module.exports = CORS(expressGraphql({
   schema,
   graphiql: process.env.GRAPHIQL,
-  rootValue: data
+  rootValue: data,
+  context: {
+    data,
+  }
 }))

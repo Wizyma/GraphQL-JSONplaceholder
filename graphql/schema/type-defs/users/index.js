@@ -2,9 +2,12 @@ const {
   GraphQLObjectType,
   GraphQLNonNull,
   GraphQLString,
-  GraphQLID,
-} = require('graphql');
-const {  adressType } = require('../adress');
+  GraphQLInt,
+  GraphQLList,
+} = require('graphql')
+
+const { adressType } = require('../adress')
+const { postsType } = require('../posts')
 
 const companyType = new GraphQLObjectType({
   name: 'Company',
@@ -25,7 +28,7 @@ const userType = new GraphQLObjectType({
   name: 'User',
   fields: () => ({
     id: {
-      type: GraphQLNonNull(GraphQLID),
+      type: GraphQLNonNull(GraphQLInt),
     },
     name: {
       type: GraphQLNonNull(GraphQLString),
@@ -48,6 +51,26 @@ const userType = new GraphQLObjectType({
     company: {
       type: GraphQLNonNull(companyType),
     },
+    posts: {
+      type: new GraphQLList(postsType),
+      args: {
+        id: {
+          type: GraphQLInt
+        },
+        title: {
+          type: GraphQLString
+        },
+      },
+      resolve: (root, { id, title }, { data }) => {
+        if (id) {
+          return data.posts.filter(post => root.id === post.userId).filter(post => post.id === id)
+        }
+        if (!id && title) {
+          return data.posts.filter(post => root.id === post.userId).filter(post => post.title.includes(title))
+        }
+        return data.posts.filter(post => root.id === post.userId)
+      }
+    }
   })
 })
 
