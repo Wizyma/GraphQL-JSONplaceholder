@@ -15,6 +15,7 @@ module.exports = () => ({
     if (id && userId) {
       return new Error('Please filter only id OR userId')
     }
+    if(!id && !userId && !email && !name) return new Error('At least one filter must be set')
     if (id) {
       return root.todos.filter(todo => todo.id === id)
     }
